@@ -395,10 +395,10 @@ footer span a:hover { text-decoration: underline; }
     box-shadow: 0 6px 15px rgba(220, 20, 60, 0.35);
 }
 
-.mission-vision .title::after {
-    content: "Our Commitment";
+/* .mission-vision .title::after {
+    content: "";
     color: crimson;
-}
+} */
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 991px) {
@@ -443,5 +443,25 @@ footer span a:hover { text-decoration: underline; }
     .home {
         background-attachment: scroll;
         min-height: 100vh;
+    }
+}
+
+/* ---- FIX ABOUT RESPONSIVE ---- */
+@media (max-width: 947px) {
+    .about .about-content {
+        flex-direction: column;
+    }
+
+    .about .about-content .left,
+    .about .about-content .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .about .about-content .left img {
+        height: auto;
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 20px;
     }
 }
