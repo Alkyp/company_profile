@@ -183,7 +183,7 @@ section .title::after {
 /* ---- HOME ---- */
 .home {
     display: flex;
-    background: url("../img/10000734501.jpg") no-repeat center;
+    background: url("../img/istockphoto-599695694-2048x2048.jpg") no-repeat center;
     background-size: cover;
     background-attachment: fixed;
     color: #fff;
@@ -459,5 +459,6 @@ footer span a:hover { text-decoration: underline; }
 .navbar.sticky:hover .menu li a {
     color: #111;
 }
+
 
 
