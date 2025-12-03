@@ -8,9 +8,12 @@
     box-sizing: border-box;
     text-decoration: none;
 }
-html {
+
+html, body {
     scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 /* Custom scrollbar */
@@ -25,7 +28,10 @@ section { padding: 100px 0; }
     max-width: 1300px;
     padding: 0 80px;
     margin: auto;
+    width: 100%;
 }
+
+/* Title */
 section .title {
     position: relative;
     text-align: center;
@@ -64,9 +70,10 @@ section .title::after {
     padding: 10px 0;
     transition: all 0.3s ease;
     background: transparent;
+    left: 0;
 }
 
-/* Background layer untuk hover */
+/* Background layer */
 .navbar::after {
     content: "";
     position: absolute;
@@ -76,45 +83,20 @@ section .title::after {
     z-index: -1;
 }
 
-/* Saat scroll */
-.navbar.sticky {
-    padding: 5px 0;
-}
+/* Sticky */
+.navbar.sticky { padding: 5px 0; }
+.navbar.sticky::after { background: rgba(255, 255, 255, 0.2); }
+.navbar.sticky:hover::after { background: rgba(250, 250, 250, 1); }
 
-.navbar.sticky::after {
-    background: rgba(255, 255, 255, 0.2); /* Transparan */
-}
-
-/* Saat hover — jadi solid */
-.navbar.sticky:hover::after {
-    background: rgba(250, 250, 250, 1); /* Solid */
-}
-
-/* Logo dan menu */
+/* Logo / Menu wrapper */
 .navbar .max-width {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-/* 
-.navbar .logo {
-    margin-left: -150px;   boleh minus
+    width: 100%;
 }
 
-.navbar .menu {
-    margin-right: -150px;  boleh minus 
-}*/
-
-.navbar .menu {
-    margin: 0;
-}
-.navbar .logo {
-    margin: 0;
-    padding-left: 0;
-}
-
-
-
+/* Logo */
 .logo img {
     height: 50px;
     width: auto;
@@ -123,16 +105,11 @@ section .title::after {
 }
 
 /* Logo transparan ketika sticky */
-.navbar.sticky .logo img {
-    opacity: 0.3;
-}
-
-/* Saat hover navbar → logo ikut solid */
-.navbar.sticky:hover .logo img {
-    opacity: 1;
-}
+.navbar.sticky .logo img { opacity: 0.3; }
+.navbar.sticky:hover .logo img { opacity: 1; }
 
 /* Menu */
+.navbar .menu { margin: 0; }
 .navbar .menu li { list-style: none; display: inline-block; }
 .navbar .menu li a {
     display: block;
@@ -143,9 +120,10 @@ section .title::after {
     transition: color 0.3s;
 }
 
-/* Hover item */
+.navbar.sticky .menu li a { color: rgba(0,0,0,0.3); }
+.navbar.sticky:hover .menu li a { color: #111; }
+
 .navbar .menu li a:hover { color: crimson; }
-.navbar.sticky .menu li a:hover { color: crimson; } 
 
 /* Menu button */
 .menu-btn {
@@ -181,17 +159,36 @@ section .title::after {
 .scroll-up-btn:hover { filter: brightness(90%); }
 
 /* ---- HOME ---- */
+
 .home {
     display: flex;
+    width: 100%;
+    min-height: 100vh; /* full screen */
+    height: auto;
+    padding: 0; /* remove default section padding */
     background: url("../img/istockphoto-599695694-2048x2048.jpg") no-repeat center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* .home {
+    display: flex;
+    background: url("/static/img/pexels-roman-odintsov-4958776.jpg") no-repeat center;
     background-size: cover;
     background-attachment: fixed;
     color: #fff;
     height: 100vh;
     min-height: 500px;
     font-family: 'Ubuntu', sans-serif;
-}
+} */
+
+
 .home .max-width { width: 100%; display: flex; }
+.home .home-content { padding-left: 20px; }
 .home .home-content .text-1 { font-size: 27px; }
 .home .home-content .text-2 { font-size: 50px; font-weight: 600; color: #73134B; }
 .home .home-content .text-3 { font-size: 40px; color: #73134B; }
@@ -209,7 +206,12 @@ section .title::after {
 .home .home-content a:hover { color: crimson; background: none; }
 
 /* ---- ABOUT ---- */
-.about .about-content { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.about .about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
 .about .about-content .left { width: 45%; }
 .about .about-content .left img {
     height: 400px;
@@ -239,7 +241,8 @@ section .title::after {
 .services, .teams { color: #fff; background: #A32E3B; }
 .services .title::before, .teams .title::before { background: #fff; }
 .services .title::after, .teams .title::after { background: #111; }
-.services .serv-content .card, .teams .carousel .card {
+.services .serv-content .card,
+.teams .carousel .card {
     background: #222;
     text-align: center;
     border-radius: 6px;
@@ -247,7 +250,8 @@ section .title::after {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.services .serv-content .card:hover, .teams .carousel .card:hover { background: crimson; }
+.services .serv-content .card:hover,
+.teams .carousel .card:hover { background: crimson; }
 .services .serv-content .card i {
     font-size: 50px;
     color: crimson;
@@ -301,10 +305,7 @@ section .title::after {
     border: 2px solid crimson;
     transition: all 0.3s ease;
 }
-.right form .button-area button:hover {
-    color: crimson;
-    background: none;
-}
+.right form .button-area button:hover { color: crimson; background: none; }
 
 /* ---- FOOTER ---- */
 footer {
@@ -316,43 +317,12 @@ footer {
 footer span a { color: crimson; }
 footer span a:hover { text-decoration: underline; }
 
-/* ---- RESPONSIVE ---- */
-@media (max-width: 991px) {
-    .max-width { padding: 0 50px; }
-}
-@media (max-width: 947px) {
-    .menu-btn { display: block; z-index: 999; }
-    .navbar .menu {
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        left: -100%;
-        top: 0;
-        background: #ffffff;
-        text-align: center;
-        padding-top: 80px;
-        transition: 0.3s;
-    }
-    .navbar .menu.active { left: 0; }   
-    .navbar .menu li { display: block; }
-    .navbar .menu li a {
-        font-size: 25px;
-        margin: 20px 0;
-    }
-}
-@media (max-width: 690px) {
-    .max-width { padding: 0 23px; }
-}
-@media (max-width: 500px) {
-    .contact .right form .fields { flex-direction: column; }
-}
-
 /* ---- CLIENT SECTION ---- */
-.partnership { padding: 100px 0; background: #f9f9f9; }
-.partnership .section-header {
-    text-align: center;
-    margin-bottom: 50px;
+.partnership {
+    padding: 100px 0;
+    background: #f9f9f9;
 }
+.partnership .section-header { text-align: center; margin-bottom: 50px; }
 .partnership .section-header h2 {
     font-size: 36px;
     font-weight: 600;
@@ -371,16 +341,6 @@ footer span a:hover { text-decoration: underline; }
     transform: scale(1.1);
 }
 
-.navbar.sticky .menu li a {
-    color: #111; /* warna gelap cocok untuk navbar putih */
-}
-
-.home .home-content {
-    margin-left: 0;
-    padding-left: 20px; /* opsional, biar ada sedikit jarak */
-}
-
-
 /* ---- MISSION & VISION ---- */
 .mission-vision {
     padding: 120px 0;
@@ -389,7 +349,7 @@ footer span a:hover { text-decoration: underline; }
 
 .mission-vision .mv-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 40px;
     align-items: stretch;
 }
@@ -402,7 +362,6 @@ footer span a:hover { text-decoration: underline; }
     transition: 0.3s ease;
     border-top: 5px solid crimson;
 }
-
 .mission-vision .mv-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(220, 20, 60, 0.25);
@@ -415,7 +374,6 @@ footer span a:hover { text-decoration: underline; }
     margin-bottom: 15px;
     font-family: 'Ubuntu', sans-serif;
 }
-
 .mission-vision .mv-card p {
     font-size: 17px;
     line-height: 1.7;
@@ -423,7 +381,6 @@ footer span a:hover { text-decoration: underline; }
     text-align: justify;
 }
 
-/* Icon lingkaran */
 .mission-vision .mv-icon {
     width: 70px;
     height: 70px;
@@ -438,27 +395,53 @@ footer span a:hover { text-decoration: underline; }
     box-shadow: 0 6px 15px rgba(220, 20, 60, 0.35);
 }
 
-/* Title khusus */
 .mission-vision .title::after {
     content: "Our Commitment";
     color: crimson;
 }
 
-/* Responsive */
+/* ---- RESPONSIVE ---- */
+@media (max-width: 991px) {
+    .max-width { padding: 0 50px; }
+}
+
+@media (max-width: 947px) {
+    .menu-btn { display: block; z-index: 999; }
+
+    .navbar .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #ffffff;
+        text-align: center;
+        padding-top: 80px;
+        transition: 0.3s;
+        overflow-x: hidden;
+    }
+
+    .navbar .menu.active { left: 0; }
+    .navbar .menu li { display: block; }
+    .navbar .menu li a {
+        font-size: 25px;
+        margin: 20px 0;
+        color: #111;
+    }
+}
+
+@media (max-width: 690px) {
+    .max-width { padding: 0 23px; }
+}
+
+@media (max-width: 500px) {
+    .contact .right form .fields { flex-direction: column; }
+}
+
+/* Fix background-attachment bug pada mobile */
 @media (max-width: 768px) {
-    .mission-vision { padding: 90px 0; }
-    .mission-vision .mv-card { padding: 28px; }
-    .mission-vision .mv-card h3 { font-size: 23px; }
-    .mission-vision .mv-card p { font-size: 16px; }
+    .home {
+        background-attachment: scroll;
+        min-height: 100vh;
+    }
 }
-
-.navbar.sticky .menu li a {
-    color: rgba(0, 0, 0, 0.3);
-}
-
-.navbar.sticky:hover .menu li a {
-    color: #111;
-}
-
-
-
